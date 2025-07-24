@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>⚙️ Configuración HIPS</title>
+  <style>
+    body { font-family: 'Segoe UI'; background-color: #f4f4f4; padding: 20px; }
+    h2 { color: #2c3e50; }
+    nav a {
+      margin-right: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #2980b9;
+    }
+    nav a:hover { text-decoration: underline; }
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 4px #ccc;
+    }
+    label { display: block; margin-top: 8px; font-weight: bold; }
+    input[type="text"], textarea {
+      width: 100%; padding: 6px; margin-top: 4px;
+    }
+    input[type="checkbox"] { margin-right: 8px; }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background-color: #2980b9; }
+    .success { color: green; margin-top: 10px; }
+    .error { color: red; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>⚙️ Configuración del sistema HIPS</h2>
+  <nav>
+    <a href="{{ url_for('dashboard') }}">🛡️ Alertas</a>
+    <a href="{{ url_for('prevencion') }}">🧠 Prevención</a>
+    <a href="{{ url_for('estado') }}">📊 Estado</a>
+    <a href="{{ url_for('cron') }}">🕓 Cron</a>
+    <a href="{{ url_for('mails') }}">📬 Mails</a>
+    <a href="{{ url_for('configuracion') }}">⚙️ Configuración</a>
+    <a href="{{ url_for('logout') }}">🔒 Cerrar sesión</a>
+  </nav>
+
+  {% if mensaje %}
+    <div class="{{ 'success' if success else 'error' }}">{{ mensaje }}</div>
+  {% endif %}
+
+  <form method="post">
+    <div class="section">
+      <h3>🧩 Módulos activos</h3>
+      {% for key, active in config.modules.items() %}
+        <label>
+          <input type="checkbox" name="modules_{{ key }}" {% if active %}checked{% endif %}> {{ key }}
+        </label>
+      {% endfor %}
+    </div>
+
+    <div class="section">
+      <h3>🔧 Parámetros técnicos</h3>
+      {% for clave, valor in config.settings.items() %}
+        {% if valor is boolean %}
+          <label>
+            <input type="checkbox" name="settings_{{ clave }}" {% if valor %}checked{% endif %}> {{ clave }}
+          </label>
+        {% elif valor is number %}
+          <label>{{ clave }}:
+            <input type="text" name="settings_{{ clave }}" value="{{ valor }}">
+          </label>
+        {% else %}
+          <label>{{ clave }}:
+            <input type="text" name="settings_{{ clave }}" value="{{ valor }}">
+          </label>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="section">
+      <h3>📜 Whitelist de procesos</h3>
+      <label>Procesos separados por coma:</label>
+      <textarea name="whitelist">{{ config.whitelist | join(', ') }}</textarea>
+    </div>
+
+    <button type="submit">💾 Guardar configuración</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Estado general HIPS</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; margin: 20px; }
+    h2 { color: #2c3e50; }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #2980b9;
+    }
+    nav a:hover { text-decoration: underline; }
+    .card {
+      background: #fff;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card h3 { margin-top: 0; color: #34495e; }
+    ul { list-style-type: none; padding-left: 0; }
+    li { padding: 5px 0; border-bottom: 1px solid #ddd; }
+    .export-button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .export-button:hover { background-color: #27ae60; }
+  </style>
+</head>
+<body>
+  <h2>📊 Estado general del sistema HIPS</h2>
+  <nav>
+    <a href="{{ url_for('dashboard') }}">🛡️ Alertas</a>
+    <a href="{{ url_for('prevencion') }}">🧠 Prevención</a>
+    <a href="{{ url_for('configuracion') }}">⚙️ Configuración</a>
+    <a href="{{ url_for('estado') }}">📊 Estado</a>
+    <a href="{{ url_for('logout') }}">🔒 Cerrar sesión</a>
+  </nav>
+
+  <div class="card">
+    <h3>🕒 Última ejecución</h3>
+    <p>{{ ultima_ejecucion }}</p>
+  </div>
+
+  <div class="card">
+    <h3>✅ Módulos activos</h3>
+    <ul>
+      {% for mod, activo in config.modules.items() %}
+        <li>{{ mod }}: {% if activo %}🟢 activo{% else %}🔴 inactivo{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📈 Alertas registradas</h3>
+    <ul>
+      {% for tipo, cantidad in alert_count.items() %}
+        <li>{{ tipo }} → <strong>{{ cantidad }}</strong></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛡️ Acciones de prevención realizadas</h3>
+    <ul>
+      {% for tipo, cantidad in prevencion_count.items() %}
+        <li>{{ tipo }} → <strong>{{ cantidad }}</strong></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <form method="get" action="/exportar_resumen">
+    <button class="export-button" type="submit">📤 Descargar resumen (.txt)</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Panel de Prevención HIPS</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; margin: 20px; }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #2980b9;
+    }
+    nav a:hover { text-decoration: underline; }
+    .card {
+      background: #fff;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card h3 { margin-top: 0; color: #34495e; }
+    ul { list-style-type: none; padding-left: 0; }
+    li {
+      background: #ecf0f1;
+      margin-bottom: 8px;
+      padding: 8px;
+      border-left: 5px solid #27ae60;
+      font-size: 15px;
+    }
+    .no-eventos {
+      color: #999;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h2>🧠 Acciones de Prevención del Sistema</h2>
+  <nav>
+    <a href="{{ url_for('dashboard') }}">🛡️ Alertas</a>
+    <a href="{{ url_for('prevencion') }}">🧠 Prevención</a>
+    <a href="{{ url_for('configuracion') }}">⚙️ Configuración</a>
+    <a href="{{ url_for('estado') }}">📊 Estado</a>
+    <a href="{{ url_for('mails') }}">📬 Mails</a>
+    <a href="{{ url_for('logout') }}">🔒 Cerrar sesión</a>
+  </nav>
+
+  <div class="card">
+    <h3>🛡️ Registros preventivos detectados</h3>
+    <ul>
+      {% if eventos %}
+        {% for linea in eventos %}
+          <li>{{ linea }}</li>
+        {% endfor %}
+      {% else %}
+        <li class="no-eventos">No se encontraron acciones registradas en prevención.log.</li>
+      {% endif %}
+    </ul>
+  </div>
+</body>
+</html>

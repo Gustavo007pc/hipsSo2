@@ -1,0 +1,57 @@
+{
+  "modules": {
+    "memory_monitor": true,
+    "cron_monitor": true,
+    "ddos_detector": true,
+    "process_monitor": true,
+    "sniffers": true,
+    "bin_integrity": true,
+    "logged_users": true,
+    "integrity_monitor": true
+  },
+  "settings": {
+    "ENABLE_MAIL": true,
+    "EMAIL_MODE": "local",
+    "ADMIN_EMAIL": "admin@localhost",
+    "EMAIL_USER": "hips@localhost",
+    "EMAIL_PASS": "clave_simulada",
+    "SMTP_SERVER": "smtp.gmail.com",
+    "SMTP_PORT": 587,
+    "LOG_LINES": 1000,
+    "AUTH_LOG_KEYWORDS": "['Failed password', 'authentication failure', 'sudo', 'session opened for user', 'Accepted password']",
+    "AUTO_REMOVE_CRON": false,
+    "SUSPICIOUS_CRON_KEYWORDS": "['curl', 'wget', 'nc', 'bash -i', 'base64 -d', 'perl -e', 'python -c', '@reboot', '@hourly']",
+    "MAX_MAILS": 10,
+    "MAIL_TIME_WINDOW": 60,
+    "TMP_MONITOR_ENABLED": true,
+    "SUSPICIOUS_TMP_KEYWORDS": "['miner', 'shell', 'bot', 'mal', 'rat', 'backdoor']"
+  },
+  "prevention": {
+    "AUTOKILL_PROCESSES": true,
+    "BLOCK_SPAMMERS": true,
+    "QUARANTINE_TMP": true,
+    "LOGIN_FAIL_THRESHOLD": 5,
+    "IP_BLOCK_ENABLED": true
+  },
+  "integrity": {
+    "USE_DATABASE": true,
+    "HASH_ALGORITHM": "sha256",
+    "CHECK_INTERVAL": 1800,
+    "AUTOFLAG_ON_CHANGE": true,
+    "ENCRYPT_HASHES": false
+  },
+  "database": {
+    "DB_NAME": "hips",
+    "DB_USER": "hips_writer",
+    "DB_PASS": "clave_escritura",
+    "DB_HOST": "localhost",
+    "DB_PORT": 5432
+  },
+  "whitelist": [
+    "Xorg",
+    "systemd",
+    "sshd",
+    "bash",
+    "code"
+  ]
+}

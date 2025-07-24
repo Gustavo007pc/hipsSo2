@@ -1,0 +1,21 @@
+{
+  "modules": {
+    "memory_monitor": true,
+    "cron_monitor": true,
+    "ddos_detector": true,
+    "process_monitor": true
+  },
+  "settings": {
+    "CONN_THRESHOLD": 200,
+    "MAX_REQUESTS": 100,
+    "TIME_WINDOW": 60,
+    "ENABLE_MAIL": true
+  },
+  "whitelist": [
+    "Xorg",
+    " systemd",
+    " sshd",
+    " bash",
+    " code"
+  ]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard de Alertas HIPS</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 20px; }
+    h2 { color: #2c3e50; }
+    nav a { margin: 0 10px; text-decoration: none; font-weight: bold; color: #2980b9; }
+    nav a:hover { text-decoration: underline; }
+    ul { list-style-type: none; padding-left: 0; }
+    li { background: #ecf0f1; margin-bottom: 5px; padding: 8px; border-left: 5px solid #3498db; }
+    .tipo-critico { border-left-color: #e74c3c; }
+    .tipo-preventivo { border-left-color: #27ae60; }
+  </style>
+</head>
+<body>
+  <h2>Dashboard de Alertas</h2>
+<nav>
+  <a href="{{ url_for('dashboard') }}">🛡️ Alertas</a> |
+  <a href="{{ url_for('prevencion') }}">🧠 Prevención</a> |
+  <a href="{{ url_for('configuracion') }}">⚙️ Configuración</a> |
+  <a href="{{ url_for('estado') }}">📊 Estado</a> |
+  <a href="{{ url_for('logout') }}">🔒 Cerrar sesión</a>
+</nav>
+  <hr>
+  <ul>
+    {% for alert in alerts %}
+      {% set tipo = alert|lower %}
+      <li class="{% if 'integridad' in tipo %}tipo-critico{% elif 'promiscuo' in tipo %}tipo-critico{% elif 'uid 0' in tipo %}tipo-preventivo{% endif %}">
+        {{ alert }}
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
