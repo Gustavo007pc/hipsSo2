@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPS - Crear usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f2f5fa;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #005a9e;
+        }
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .login-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            color: #005a9e;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #005a9e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #003d80;
+        }
+    </style>
+</head>
+<body>
+    <h1>HIPS - Crear usuario</h1>
+    <div class="login-form">
+        <form action="tu_script_de_creacion_de_usuario.php" method="post">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Crear usuario</button>
+        </form>
+    </div>
+</body>
+</html>

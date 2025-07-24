@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>HIPS</h1>
+    <div class="fila">
+        <div class="cuadro">
+            <h2>Archivos Binarios</h2>
+            <textarea rows="4" wrap="soft">Verificar si los archivos binarios /etc/passwd y /etc/shadow han sido modificados.</textarea>
+            <br>
+            <a href="/verificacion-firma/verify_binaries">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>Usuarios conectados</h2>
+            <textarea rows="4" wrap="soft">Verificar los usuarios conectados al sistema y sus origenes.</textarea>
+            <br>
+            <a href="/verificacion-usuarios-conectados/check_users">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>Sniffers</h2>
+            <textarea rows="4" wrap="soft">Verificar posibles sniffers en el sistema.</textarea>
+            <br>
+            <a href="/verificacion-sniffers/check_sniffers">Verificar</a>
+        </div>
+    </div>
+    <div class="fila">
+        <div class="cuadro">
+            <h2>Archivos Logs</h2>
+            <textarea rows="4" wrap="soft">Verificar los archivos logs del sistema.</textarea>
+            <br>
+            <a href="/verificacion-logs/check_accessLog">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>Cola de Email</h2>
+            <textarea rows="4" wrap="soft">Verificar el tamano de la cola del email.</textarea>
+            <br>
+            <a href="/verificacion-cola-email/check_mailq">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>Rendimiento del Sistema</h2>
+            <textarea rows="4" wrap="soft">Verificar el rendimiento del sistema y matar procesos que consuman muchos recursos.</textarea>
+            <br>
+            <a href="/verificacion-consumo/check_uso_alto">Verificar</a>
+        </div>
+    </div>
+    <div class="fila">
+        <div class="cuadro">
+            <h2>/tmp</h2>
+            <textarea rows="4" wrap="soft">Verificar la existencia de ejecutables en el directorio /tmp, si existe, se manda el archivo a cuarentena.</textarea>
+            <br>
+            <a href="/verificacion-tmp/check_tmp">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>DDOS</h2>
+            <textarea rows="4" wrap="soft">Verificar ataques ddos y controlarlos.</textarea>
+            <br>
+            <a href="/verificacion-ddos/check_log_ddos">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>Cron</h2>
+            <textarea rows="4" wrap="soft">Verificar archivos ejecutandose como cron.</textarea>
+            <br>
+            <a href="/verificacion-cron/cron">Verificar</a>
+        </div>
+        <div class="cuadro">
+            <h2>Acceso Remoto</h2>
+            <textarea rows="4" wrap="soft">Verificar intentos de accesos por ssh.</textarea>
+            <br>
+            <a href="/verificacion-ssh/check_ssh_logs">Verificar</a>
+        </div>
+    </div>
+</body>
+</html>
